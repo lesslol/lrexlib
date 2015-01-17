@@ -145,8 +145,10 @@ static EncPair Encodings[] = {
   { "UNDEF",          ONIG_ENCODING_UNDEF },
   { "UTF16_BE",       ONIG_ENCODING_UTF16_BE },
   { "UTF16_LE",       ONIG_ENCODING_UTF16_LE },
+#ifdef ONIG_ENCODING_UTF32_BE
   { "UTF32_BE",       ONIG_ENCODING_UTF32_BE },
   { "UTF32_LE",       ONIG_ENCODING_UTF32_LE },
+#endif
   { "UTF8",           ONIG_ENCODING_UTF8 },
 };
 
@@ -241,8 +243,10 @@ typedef struct {
 static int name_callback (const UChar *name, const UChar *name_end,
       int ngroups, int *groupnumlist, regex_t *reg, void *arg)
 {
+#ifndef _MSC_VER
   (void) ngroups;
   (void) groupnumlist;
+#endif
   TNameArg *A = (TNameArg*)arg;
   int num = onig_name_to_backref_number(reg, name, name_end, A->ud->region);
   lua_pushlstring (A->L, (const char*)name, name_end - name);
