@@ -3,6 +3,9 @@
 -- This file should contain only test sets that behave identically
 -- when being run with pcre or posix regex libraries.
 
+-- lua52 compat
+local unpack = unpack or table.unpack
+
 local luatest = require "luatest"
 local N = luatest.NT
 

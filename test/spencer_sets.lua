@@ -1,5 +1,8 @@
 -- See Copyright Notice in the file LICENSE
 
+-- lua52 compat
+local unpack = unpack or table.unpack
+
 local luatest = require "luatest"
 local N = luatest.NT
 
